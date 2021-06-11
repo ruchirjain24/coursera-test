@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const translateBtn = document.getElementById('hell');
     translateBtn.addEventListener('click', function() {
         replaceText(document.body);
+        alert("hello");
         var ele=document.getElementById('trial');
         alert('<span style="color: red"> Hello </span>');
         ele.textContent='<span style="color: red"> Hello </span>';
