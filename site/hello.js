@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         alert("hello");
         var ele=document.getElementById('trial');
         alert('<span style="color: red"> Hello </span>');
-        ele.textContent='<span style="color: red"> Hello </span>';
+        ele.innerHTML='<span style="color: red"> Hello </span>';
       });
   });
   function replaceText(element){
