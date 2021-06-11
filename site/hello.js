@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const translateBtn = document.getElementById('hell');
     translateBtn.addEventListener('click', function() {
         replaceText(document.body);
-        const ele=document.getElementById('trial');
+        var ele=document.getElementById('trial');
+        alert('<span style="color: red"> Hello </span>');
         ele.textContent='<span style="color: red"> Hello </span>';
       });
   });
