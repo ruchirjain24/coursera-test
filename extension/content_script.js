@@ -36,6 +36,7 @@ function replaceText(element) {
     //Perform case-insensitive matching
     const re = new RegExp(find, "gi");
     // then replace the word
+    replace='<span style="font-family: naYanakamikRegular;">'+replace+'</span>';
     element.textContent = element.textContent.replace(re, replace);
   }
 }
