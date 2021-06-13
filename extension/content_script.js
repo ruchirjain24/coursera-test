@@ -31,7 +31,9 @@ function replaceText(element) {
     // if our root element has childNodes, then for each childNode, repeat this function
     element.childNodes.forEach(replaceText);
   } else {
-    // make a regular expression
+    // make a regular expression, Perform a global match 
+    //(find all matches rather than stopping after the first match)
+    //Perform case-insensitive matching
     const re = new RegExp(find, "gi");
     // then replace the word
     element.textContent = element.textContent.replace(re, replace);
