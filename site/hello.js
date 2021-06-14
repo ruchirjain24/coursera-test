@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     translateBtn.addEventListener('click', function() {
         replaceText(document.body);
         var ele=document.getElementById('trial');
-        ele.innerHTML='<span style="color: blue;"> Hellos </span>';
+        ele.innerHTML='<span style="font-family: naYanakamikRegular;"> Hellos </span>';
       });
   });
   function replaceText(element){
