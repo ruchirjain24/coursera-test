@@ -26,6 +26,5 @@ function replaceText(element) {
             return;
         element.textContent = reverseString(element.textContent);
         console.log(element.textContent);
-        element.style.color = 'red';
     }
 }
