@@ -1,10 +1,10 @@
 function reverseString(str) {
-    var splitString = str.split(""); 
-    var reverseArray = splitString.reverse(); 
+    var splitString = str.split("");
+    var reverseArray = splitString.reverse();
     var joinArray = reverseArray.join("");
     alert(joinArray);
-    return joinArray; 
-  }
+    return joinArray;
+}
 document.addEventListener('DOMContentLoaded', function () {
     const btn = document.getElementById("butt")
     btn.addEventListener("click", function () {
@@ -20,13 +20,11 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 function replaceText(element) {
     if (element.hasChildNodes()) {
-      element.childNodes.forEach(replaceText);
-    } 
-    else {
-      var str=element.textContent;
-      console.log(str);
-      var str1=reverseString(str);
-      element.textContent=str1;
-    //   element.style.fontFamily='naYanakamikRegular';
+        element.childNodes.forEach(replaceText);
     }
-  }
+    else {
+        element.textContent = reverseString(element.textContent);
+        console.log(element.textContent);
+        element.style.fontFamily='Arial';
+    }
+}
