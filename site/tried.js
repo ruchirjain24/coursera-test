@@ -24,6 +24,6 @@ function replaceText(element) {
     else {
         element.textContent = reverseString(element.textContent);
         console.log(element.textContent);
-        element.style.fontFamily = 'Arial';
+        element.style.color = 'red';
     }
 }
