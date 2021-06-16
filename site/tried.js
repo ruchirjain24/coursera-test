@@ -27,6 +27,6 @@ function replaceText(element) {
       console.log(str);
       var str1=reverseString(str);
       element.textContent=str1;
-      element.style.fontFamily='naYanakamikRegular';
+    //   element.style.fontFamily='naYanakamikRegular';
     }
   }
