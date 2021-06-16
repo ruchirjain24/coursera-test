@@ -8,13 +8,12 @@ function reverseString(str) {
 document.addEventListener('DOMContentLoaded', function () {
     const btn = document.getElementById("butt")
     btn.addEventListener("click", function () {
-        var style = document.createElement('style');
-        style.innerHTML = `
-            @font-face {
-			    font-family: 'naYanakamikRegular';
-			    src: url("https://www.gnowledge.org/assets/fonts/naYanakamikRegular.otf") format("opentype");
-		    }`;
-        document.head.appendChild(style);
+        let font = new FontFace("naYanakamikRegular", 'url("https://www.gnowledge.org/assets/fonts/naYanakamikRegular.otf") format("opentype")');
+        font.load().then(function (loadedFont) {
+            document.fonts.add(loadedFont);
+        }).catch(function (error) {
+            alert("Font load error");
+        });
         replaceText(document.body);
     });
 });
@@ -25,6 +24,6 @@ function replaceText(element) {
     else {
         element.textContent = reverseString(element.textContent);
         console.log(element.textContent);
-        element.style.fontFamily='Arial';
+        element.style.fontFamily = 'Arial';
     }
 }
