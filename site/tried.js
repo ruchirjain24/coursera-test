@@ -2,7 +2,6 @@ function reverseString(str) {
     var splitString = str.split("");
     var reverseArray = splitString.reverse();
     var joinArray = reverseArray.join("");
-    alert(joinArray);
     return joinArray;
 }
 document.addEventListener('DOMContentLoaded', function () {
@@ -22,6 +21,9 @@ function replaceText(element) {
         element.childNodes.forEach(replaceText);
     }
     else {
+        var str=element.textContent;
+        if(str.length === 0)
+            return;
         element.textContent = reverseString(element.textContent);
         console.log(element.textContent);
         element.style.color = 'red';
