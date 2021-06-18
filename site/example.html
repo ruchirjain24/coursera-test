@@ -34,7 +34,7 @@
             'd': 'ð',
             'e': 'ɛ',
             'f': 'f',
-            'g': 'ɡ',
+            'g': 'ɡ', 
             // 'h': 'h',
             'i': 'ɪ',
             'j': 'ʤ',
@@ -66,8 +66,14 @@
         let dict_h = {
             'd': 'ɖ̤',   //"Dh"
             'z': 'ʒ',   //"zh"
-            't': 'θ',    //"Th"
+            't': 'θ',   //"Th"
             'ʃ': 'ʂ'    //"Sh"
+        };
+        let dict__ ={
+            'n':'ŋ',    //"n_"
+            'ɡ':'ɲ',    //"g_"
+            'r':'r̩',    //"R_"
+            'd':'ɽ̥'     //"D_"
         };
         var key = event.key;
         if (key in dict) {
@@ -92,6 +98,20 @@
             }
             else {
                 input.value = input.value + 'h';
+            }
+        }
+        if (key === '_') {
+            let input = document.getElementById("abcd");
+            var str = input.value;
+            var len = str.length;
+            event.preventDefault();
+            if (len !== 0 && str.charAt(len - 1) in dict__) { //short circuit
+                var ch = dict__[str.charAt(len - 1)];
+                str = str.substring(0, str.length - 1);
+                input.value = str + ch;
+            }
+            else {
+                input.value = input.value + '_';
             }
         }
     }
