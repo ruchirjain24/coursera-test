@@ -1,0 +1,98 @@
+<html>
+
+<head>
+    <title> Example Input</title>
+
+</head>
+
+<body>
+    <input id="abcd" type="text" onkeypress="uniKeyCode(event)" />
+</body>
+<script>
+    var temp = ''; //declaring another value to store english string(input)
+    function uniKeyCode(event) {
+        let dict = {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "0": "0",
+
+            ".": ".",
+            " ": " ",
+            "*": "*",
+            "।": "।",
+            ",": ",",
+
+            'a': 'a',
+            'b': 'b',
+            'c': 'ʧ',
+            'd': 'ð',
+            'e': 'ɛ',
+            'f': 'f',
+            'g': 'ɡ',
+            'h': 'h',
+            'i': 'ɪ',
+            'j': 'ʤ',
+            'k': 'k',
+            "l": "l",
+            "m": "m",
+            "n": "n",
+            "o": "o",
+            "p": "p",
+            'q': 'q',
+            'r': ':',
+            's': 's',
+            't': 'ʈ',
+            'u': 'ʊ',
+            'v': 'v',
+            'w': 'w',
+            'z': 'z',
+
+            'A': 'æ',
+            'D': 'd',
+            'E': 'e',
+            'N': 'ɳ',
+            'R': 'r',
+            'S': 'ʃ',
+            'T': 't',
+            'Y': 'j',
+            'O': 'ɔ',
+
+            'ng': 'ŋ',
+            'gn': 'ɳ'
+
+        };
+        var key = event.key;
+        // console.log(event);
+        if (key in dict) {
+            event.preventDefault();
+            let input = document.getElementById("abcd");
+
+            temp = temp + key; //adding each input key to temp
+
+            let last2char = temp.charAt(temp.length-2) + temp.charAt(temp.length-1); //storing last 2 character in last2char
+            console.log(temp);
+            console.log(temp.charAt(temp.length-1));
+            console.log(temp.charAt(temp.length-2));
+            if (last2char in dict) { // check if last char present in dict
+                input.value = input.value.slice(0, -1) + dict[last2char]; // spicing last character from input.value and adding value of dict[last2char]
+            }
+            else {
+                input.value = input.value + dict[key];
+            }
+            // console.log(key);
+            // console.log(dict[key]);
+            // console.log(input);
+
+
+        }
+    }
+</script>
+
+</html>
