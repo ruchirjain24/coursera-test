@@ -64,9 +64,9 @@
             'O': 'ɔ'
         };
         let dict_h = {
-            'd': 'ɖ̤',
-            'z': 'ʒ',
-            't': 'θ'
+            'd': 'ɖ̤',   //"Dh"
+            'z': 'ʒ',   //"zh"
+            't': 'θ'    //"Th"
         };
         var key = event.key;
         if (key in dict) {
@@ -84,9 +84,8 @@
             var str= input.value;
             var len=str.length;
             event.preventDefault();
-            if(len!==0 && str.charAt(len-1) in dict_h){
+            if(len!==0 && str.charAt(len-1) in dict_h){ //short circuit
                 var ch=dict_h[str.charAt(len-1)];
-                console.log(ch);
                 str = str.substring(0, str.length-1);
                 input.value = str + ch;
             }
