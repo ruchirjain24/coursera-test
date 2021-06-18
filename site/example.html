@@ -1,0 +1,100 @@
+<html>
+
+<head>
+    <title> Example Input</title>
+
+</head>
+
+<body>
+    <input id="abcd" type="text" onkeypress="uniKeyCode(event)" />
+</body>
+<script>
+    function uniKeyCode(event) {
+        let dict = {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "0": "0",
+
+            ".": ".",
+            " ": " ",
+            "*": "*",
+            "।": "।",
+            ",": ",",
+
+            'a': 'a',
+            'b': 'b',
+            'c': 'ʧ',
+            'd': 'ð',
+            'e': 'ɛ',
+            'f': 'f',
+            'g': 'ɡ',
+            // 'h': 'h',
+            'i': 'ɪ',
+            'j': 'ʤ',
+            'k': 'k',
+            "l": "l",
+            "m": "m",
+            "n": "n",
+            "o": "o",
+            "p": "p",
+            'q': 'q',
+            'r': ':',
+            's': 's',
+            't': 'ʈ',
+            'u': 'ʊ',
+            'v': 'v',
+            'w': 'w',
+            'z': 'z',
+
+            'A': 'æ',
+            'D': 'd',
+            'E': 'e',
+            'N': 'ɳ',
+            'R': 'r',
+            'S': 'ʃ',
+            'T': 't',
+            'Y': 'j',
+            'O': 'ɔ'
+        };
+        let dict_h = {
+            'd': 'ɖ̤',
+            'z': 'ʒ',
+            't': 'θ'
+        };
+        var key = event.key;
+        if (key in dict) {
+            event.preventDefault();
+
+            let input = document.getElementById("abcd");
+
+            console.log(key);
+            console.log(dict[key]);
+            input.value = input.value + dict[key];
+            console.log(input);
+        }
+        if (key === 'h') {
+            let input = document.getElementById("abcd");
+            var str= input.value;
+            var len=str.length;
+            event.preventDefault();
+            if(len!==0 && str.charAt(len-1) in dict_h){
+                var ch=dict_h[str.charAt(len-1)];
+                console.log(ch);
+                str = str.substring(0, str.length-1);
+                input.value = str + ch;
+            }
+            else{
+                input.value = input.value + 'h';
+            }
+        }
+    }
+</script>
+
+</html>
