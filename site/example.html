@@ -66,7 +66,8 @@
         let dict_h = {
             'd': 'ɖ̤',   //"Dh"
             'z': 'ʒ',   //"zh"
-            't': 'θ'    //"Th"
+            't': 'θ',    //"Th"
+            'ʃ': 'ʂ'    //"Sh"
         };
         var key = event.key;
         if (key in dict) {
@@ -81,15 +82,15 @@
         }
         if (key === 'h') {
             let input = document.getElementById("abcd");
-            var str= input.value;
-            var len=str.length;
+            var str = input.value;
+            var len = str.length;
             event.preventDefault();
-            if(len!==0 && str.charAt(len-1) in dict_h){ //short circuit
-                var ch=dict_h[str.charAt(len-1)];
-                str = str.substring(0, str.length-1);
+            if (len !== 0 && str.charAt(len - 1) in dict_h) { //short circuit
+                var ch = dict_h[str.charAt(len - 1)];
+                str = str.substring(0, str.length - 1);
                 input.value = str + ch;
             }
-            else{
+            else {
                 input.value = input.value + 'h';
             }
         }
