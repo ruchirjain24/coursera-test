@@ -1,0 +1,123 @@
+<html>
+
+<head>
+    <title> Example Input</title>
+
+</head>
+
+<body>
+    <input id="abcd" type="text" onkeydown="uniKeyCode(event)" />
+</body>
+<script>
+    function uniKeyCode(event) {
+        let dict = {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "0": "0",
+
+            ".": ".",
+            " ": " ",
+            "*": "*",
+            "।": "।",
+            ",": ",",
+
+            'a': 'a',
+            'b': 'b',
+            'c': 'ʧ',
+            'd': 'ð',
+            'e': 'ɛ',
+            'f': 'f',
+            'g': 'ɡ',
+            'i': 'ɪ',
+            'j': 'ʤ',
+            'k': 'k',
+            "l": "l",
+            "m": "m",
+            "n": "n",
+            "o": "o",
+            "p": "p",
+            'q': 'q',
+            'r': ':',
+            's': 's',
+            't': 'ʈ',
+            'u': 'ʊ',
+            'v': 'v',
+            'w': 'w',
+            'z': 'z',
+
+            'A': 'æ',
+            'D': 'd',
+            'E': 'e',
+            'H': 'ʰ',
+            'N': 'ɳ',
+            'R': 'r',
+            'S': 'ʃ',
+            'T': 't',
+            'Y': 'j',
+            'O': 'ɔ'
+        };
+        let dict_h = {
+            'd': 'ɽ',   //"Dh"
+            'z': 'ʒ',   //"zh"
+            't': 'θ',   //"Th"
+            'ʃ': 'ʂ'    //"Sh"
+        };
+        let dict_alt = {
+            'n': 'ŋ',    //"n_"
+            'ɡ': 'ɲ',    //"g_"
+            'r': 'r̩',    //"R_"
+            'd': 'ɽ̥'     //"D_"
+        };
+        var key = event.key;
+        if (!event.altkey) {
+            if (key in dict) {
+                event.preventDefault();
+
+                let input = document.getElementById("abcd");
+
+                console.log(key);
+                console.log(dict[key]);
+                input.value = input.value + dict[key];
+                console.log(input);
+            }
+            if (key === 'h') {
+                let input = document.getElementById("abcd");
+                var str = input.value;
+                var len = str.length;
+                event.preventDefault();
+                if (len !== 0 && str.charAt(len - 1) in dict_h) { //short circuit
+                    var ch = dict_h[str.charAt(len - 1)];
+                    str = str.substring(0, str.length - 1);
+                    input.value = str + ch;
+                }
+                else {
+                    input.value = input.value + 'h';
+                }
+            }
+        }
+        else{
+            if(key in dict_alt){
+                event.preventDefault();
+
+                let input = document.getElementById("abcd");
+
+                console.log(key);
+                console.log(dict_alt[key]);
+                input.value = input.value + dict_alt[key];
+                console.log(input);
+            }
+        }
+
+
+
+    }
+</script>
+
+</html>
