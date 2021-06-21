@@ -84,47 +84,46 @@
             'd': 'ɽ̥'     //"D_"
         };
         var key = event.key;
-        if (!event.altKey) {
-            if (key in dict) {
-                event.preventDefault();
+        if (!event.ctrlKey) {
+            if (!event.altKey) {
+                if (key in dict) {
+                    event.preventDefault();
 
-                let input = document.getElementById("abcd");
+                    let input = document.getElementById("abcd");
 
-                console.log(key);
-                console.log(dict[key]);
-                input.value = input.value + dict[key];
-                console.log(event);
-            }
-            if (key === 'H') {
-                let input = document.getElementById("abcd");
-                var str = input.value;
-                var len = str.length;
-                event.preventDefault();
-                if (len !== 0 && str.charAt(len - 1) in dict_h) { //short circuit
-                    var ch = dict_h[str.charAt(len - 1)];
-                    str = str.substring(0, str.length - 1);
-                    input.value = str + ch;
+                    console.log(key);
+                    console.log(dict[key]);
+                    input.value = input.value + dict[key];
+                    console.log(event);
                 }
-                else {
-                    input.value = input.value + 'ʰ';
+                if (key === 'H') {
+                    let input = document.getElementById("abcd");
+                    var str = input.value;
+                    var len = str.length;
+                    event.preventDefault();
+                    if (len !== 0 && str.charAt(len - 1) in dict_h) { //short circuit
+                        var ch = dict_h[str.charAt(len - 1)];
+                        str = str.substring(0, str.length - 1);
+                        input.value = str + ch;
+                    }
+                    else {
+                        input.value = input.value + 'ʰ';
+                    }
+                }
+            }
+            else {
+                if (key in dict_alt) {
+                    event.preventDefault();
+
+                    let input = document.getElementById("abcd");
+
+                    console.log(key);
+                    console.log(dict_alt[key]);
+                    console.log(event);
+                    input.value = input.value + dict_alt[key];
                 }
             }
         }
-        else{
-            if(key in dict_alt){
-                event.preventDefault();
-
-                let input = document.getElementById("abcd");
-
-                console.log(key);
-                console.log(dict_alt[key]);
-                console.log(event);
-                input.value = input.value + dict_alt[key];
-            }
-        }
-
-
-
     }
 </script>
 
