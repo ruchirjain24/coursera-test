@@ -1,219 +1,79 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>My Responsive Layout</title>
   <style>
-        @font-face {
-            font-family: 'naYana';
-            src: url("naYanaIPA4.otf") format("opentype");
-        }
-        #nYn{
-            font-family: 'naYana';
-        }
-    </style>
+    @font-face {
+      font-family: 'naYana';
+      src: url("naYanaIPA4.otf") format("opentype");
+    }
+    #nYn {
+      font-family: 'naYana';
+    }
+    #nYnlog{
+      font-family: 'naYana';
+    }
+  </style>
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   <link href='css/styles.css' rel='stylesheet' type='text/css'>
 </head>
+
 <body>
   <div class="container">
     <div class="row">
 
-    <h1 class="menu">naYana input trial webpage</h1>
+      <h1 class="menu">naYana input trial webpage</h1>
       <div class="col-lg-4">
         <div class="item">
           <div class="item-title" id="title-one">
             <h3>INPUT</h3>
           </div>
           <p>
-            <textarea id="abcd" style="width: 100%;word-wrap: break-word;min-height: 150px;resize: none;"
-        onkeydown="uniKeyCode(event)"></textarea>
-        </p>
+            <textarea id="abcd" style="width: 100%;word-wrap: break-word;min-height: 400px;resize: none;"
+              onkeydown="uniKeyCode(event)"></textarea>
+          </p>
         </div>
       </div>
       <div class="col-lg-4">
         <div class="item">
-         <div class="item-title" id="title-two">
-          <h3>IPA</h3>
+          <div class="item-title" id="title-two">
+            <h3>IPA</h3>
+          </div>
+          <p id="IPA" style="width: 100%;word-wrap: break-word;min-height: 150px;resize: none;"></p>
         </div>
-        <p id="IPA" style="width: 100%;word-wrap: break-word;min-height: 150px;resize: none;"></p>
       </div>
+      <div class="col-lg-4 col-lg-tab">
+        <div class="item">
+          <div class="item-title" id="title-three">
+            <h3>NAYANA</h3>
+          </div>
+          <p id="nYn" style="width: 100%;word-wrap: break-word;min-height: 150px;resize: none;"></p>
+        </div>
+      </div>
+      
     </div>
-    <div class="col-lg-4 col-lg-tab">
-      <div class="item">
-       <div class="item-title" id="title-three">
-        <h3>NAYANA</h3>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="item">
+          <div class="item-title" id="title-four">
+            <h3>IPA LOG</h3>
+          </div>
+          <p id="IPAlog" style="width: 100%;word-wrap: break-word;min-height: 150px;resize: none;"></p>
+        </div>
       </div>
-      <p id="nYn" style="width: 100%;word-wrap: break-word;min-height: 150px;resize: none;"></p>
+      <div class="col-lg-4">
+        <div class="item">
+          <div class="item-title" id="title-five">
+            <h3>NAYANA LOG</h3>
+          </div>
+          <p id="nYnlog" style="width: 100%;word-wrap: break-word;min-height: 150px;resize: none;"></p>
+        </div>
+      </div>
     </div>
   </div>
-
-</div>
-</div>
 </body>
-<script>
-  function uniKeyCode(event) {
-      let dict = {
-          "1": "1",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5",
-          "6": "6",
-          "7": "7",
-          "8": "8",
-          "9": "9",
-          "0": "0",
-
-          ".": ".",
-          " ": " ",
-          "*": "*",
-          "।": "।",
-          ",": ",",
-
-          'a': 'a',
-          'b': 'b',
-          'c': 'ʧ',
-          'd': 'ð',
-          'e': 'ɛ',
-          'f': 'f',
-          'g': 'ɡ',
-          'i': 'ɪ',
-          'j': 'ʤ',
-          'k': 'k',
-          "l": "l",
-          "m": "m",
-          "n": "n",
-          "o": "o",
-          "p": "p",
-          'q': 'q',
-          'r': ':',
-          's': 's',
-          't': 'ʈ',
-          'u': 'ʊ',
-          'v': 'v',
-          'w': 'w',
-          'z': 'z',
-
-          'A': 'æ',
-          'D': 'd',
-          'E': 'e',
-          // 'H': 'ʰ',
-          'N': 'ɳ',
-          'R': 'r',
-          'S': 'ʃ',
-          'T': 't',
-          'Y': 'j',
-          'O': 'ɔ'
-      };
-      let dict_h = {
-          'ɽ': 'ɽ̥',   //"D"+"H"
-          'z': 'ʒ',   //"z"+"H"
-          't': 'θ',   //"T"+"H"
-          'ʃ': 'ʂ'    //"S"+"H"
-      };
-      let dict_alt = {    //_ is altKey here
-          'n': 'ŋ',    //"n_"
-          'g': 'ɲ',    //"g_"
-          'r': 'r̩',    //"r_"
-          'd': 'ɽ'     //"d_"
-      };
-      var key = event.key;
-      var keycode = event.which;
-
-      if (!event.ctrlKey) {   //to allow ctrlC ctrlV and ctrlX ctrlV options
-          if (!event.altKey) {
-              if (key in dict) {
-                  event.preventDefault();
-
-                  let input = document.getElementById("abcd");
-                  let IPA = document.getElementById("IPA");
-                  let nYn = document.getElementById("nYn");
-                  console.log(key);
-                  console.log(dict[key]);
-                  input.value = input.value + key;
-                  IPA.textContent = IPA.textContent + dict[key];
-                  nYn.textContent = IPA.textContent;
-
-                  console.log(event);
-              }
-              if (key === 'H') {
-                  let input = document.getElementById("abcd");
-                  let IPA = document.getElementById("IPA");
-                  let nYn = document.getElementById("nYn");
-                  var str = IPA.textContent;
-                  var len = str.length;
-                  event.preventDefault();
-                  input.value += "H";
-                  if (len !== 0 && str.charAt(len - 1) in dict_h) { //short circuit
-                      var ch = dict_h[str.charAt(len - 1)];
-                      str = str.substring(0, str.length - 1);
-                      IPA.textContent = str + ch;
-                      nYn.textContent = IPA.textContent;
-                  }
-                  else {
-                      IPA.textContent = IPA.textContent + 'ʰ';
-                      nYn.textContent = IPA.textContent;
-                  }
-              }
-              // if (keycode == 8 || keycode == 46) { //To allow removal of characters using backspace in IPA and nYn column
-
-              //     let input = document.getElementById("abcd");
-              //     let IPA = document.getElementById("IPA");
-              //     let nYn = document.getElementById("nYn");
-              //     var str = input.value;
-              //     var len = str.length;
-              //     event.preventDefault();
-              //     if (len != 0) {
-              //         var last = str.charAt(len - 1);
-              //         var second_last = str.charAt(len - 2);
-              //         var third_last = str.charAt(len - 3);
-              //         if (last === "H") {
-              //             if (third_last === '↑') {
-              //                 input.value = input.value.substring(0, input.value.length - 1);
-              //                 IPA.textContent = IPA.textContent.substring(0, IPA.textContent.length - 1);
-              //                 nYn.textContent = IPA.textContent;
-              //             }
-              //         }
-              //         else {
-              //             IPA.textContent = IPA.textContent.substring(0, IPA.textContent.length - 1);
-              //             nYn.textContent = IPA.textContent;
-              //             input.value = input.value.substring(0, input.value.length - 1);
-              //             if (second_last === '↑') {
-              //                 input.value = input.value.substring(0, input.value.length - 1);
-              //             }
-
-              //         }
-              //     }
-              // }
-              // if(keycode===13){
-              //     let IPA = document.getElementById("IPA");
-              //     let nYn = document.getElementById("nYn");
-                  
-              // }
-          }
-
-          else {
-              if (key in dict_alt) {
-                  event.preventDefault();
-
-                  let input = document.getElementById("abcd");
-                  let IPA = document.getElementById("IPA");
-                  let nYn = document.getElementById("nYn");
-
-                  console.log(key);
-                  console.log(dict_alt[key]);
-                  console.log(event);
-                  input.value = input.value + '↑' + key;
-                  IPA.textContent = IPA.textContent + dict_alt[key];
-                  nYn.textContent = IPA.textContent;
-                  console.log(IPA.innerHTML);
-
-              }
-          }
-      }
-  }
-</script>
-
+<script src="index.js"></script>
 </html>
