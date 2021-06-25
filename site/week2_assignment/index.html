@@ -10,10 +10,12 @@
       font-family: 'naYana';
       src: url("naYanaIPA4.otf") format("opentype");
     }
+
     #nYn {
       font-family: 'naYana';
     }
-    #nYnlog{
+
+    #nYnlog {
       font-family: 'naYana';
     }
   </style>
@@ -26,13 +28,14 @@
     <div class="row">
 
       <h1 class="menu">naYana input trial webpage</h1>
+      <div class="menu" id="buttonne"><button id="copy">LOG</button></div>
       <div class="col-lg-4">
         <div class="item">
           <div class="item-title" id="title-one">
             <h3>INPUT</h3>
           </div>
           <p>
-            <textarea id="abcd" style="width: 100%;word-wrap: break-word;min-height: 400px;resize: none;"
+            <textarea id="inp" style="width: 100%;word-wrap: break-word;min-height: 400px;resize: none;"
               onkeydown="uniKeyCode(event)"></textarea>
           </p>
         </div>
@@ -42,18 +45,20 @@
           <div class="item-title" id="title-two">
             <h3>IPA</h3>
           </div>
-          <p id="IPA" style="width: 100%;word-wrap: break-word;min-height: 150px;resize: none;"></p>
+          <p id="IPA" style="white-space: pre; width: 100%;word-wrap: break-word;min-height: 150px;resize: none;"
+            contenteditable="true" onkeydown="preventEntry(event)"></p>
         </div>
       </div>
-      <div class="col-lg-4 col-lg-tab">
+      <div class="col-lg-4">
         <div class="item">
           <div class="item-title" id="title-three">
             <h3>NAYANA</h3>
           </div>
-          <p id="nYn" style="width: 100%;word-wrap: break-word;min-height: 150px;resize: none;"></p>
+          <p id="nYn" style="white-space: pre; width: 100%;word-wrap: break-word;min-height: 150px;resize: none;"
+            contenteditable="true" onkeydown="preventEntry(event)"></p>
         </div>
       </div>
-      
+
     </div>
     <div class="row">
       <div class="col-lg-4">
@@ -67,7 +72,7 @@
       <div class="col-lg-4">
         <div class="item">
           <div class="item-title" id="title-five">
-            <h3>NAYANA LOG</h3>
+            <h3>NYN LOG</h3>
           </div>
           <p id="nYnlog" style="width: 100%;word-wrap: break-word;min-height: 150px;resize: none;"></p>
         </div>
@@ -76,4 +81,5 @@
   </div>
 </body>
 <script src="index.js"></script>
+
 </html>
