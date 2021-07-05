@@ -23,7 +23,7 @@ async function postData(url = '', data = {}) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // postData('https://nayanapluginserver.pythonanywhere.com/naYana/IPA/getIpaDetect', { 'str': "hello" })
+    // postData('https://nayanapluginserver.pythonanywhere.com/naYana/IPA/getIpaDetect', { 'str': "this is a trial please try again!! hello" })
     //             .then(data => {
     //                 console.log(data); // JSON data parsed by `data.json()` call
     //             });
