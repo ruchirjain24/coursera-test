@@ -92,9 +92,9 @@ obj=JSON.stringify(obj);
 Http.send(obj);
 
 Http.onreadystatechange = (e) => {
-  console.log(Http.responseText.IPA);
-//   let obj=JSON.parse(Http.responseText);
-//   console.log(obj.IPA);
+  console.log(Http.responseText);
+  let obj=JSON.parse(Http.responseText);
+  console.log(obj.IPA);
 }
     let btn = document.getElementById('btn');
     btn.addEventListener('click', () => {
