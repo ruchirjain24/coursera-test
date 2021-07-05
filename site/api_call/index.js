@@ -91,11 +91,23 @@ let obj={ str: "hello there!!" };
 obj=JSON.stringify(obj);
 Http.send(obj);
 
-Http.onreadystatechange = (e) => {
-  console.log(Http.responseText);
-  let obj=JSON.parse(Http.responseText);
-  console.log(obj.IPA);
-}
+// Http.onreadystatechange = (e) => {
+//   console.log(Http.responseText);
+//   let obj=JSON.parse(Http.responseText);
+//   console.log(obj.IPA);
+// }
+Http.onreadystatechange = function() {
+    if (Http.readyState === 4) {
+      if (this.status == 200) {
+        console.log(Http.responseText);
+        let obj=JSON.parse(Http.responseText);
+        console.log(obj.IPA);
+      }
+      else {
+          console.log("lol ho gaya!!");
+      }
+    }
+  };
     let btn = document.getElementById('btn');
     btn.addEventListener('click', () => {
         for (let i = 1; i < 7; i++) {
