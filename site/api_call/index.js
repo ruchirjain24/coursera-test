@@ -102,6 +102,8 @@ Http.onreadystatechange = function() {
         console.log(Http.responseText);
         let obj=JSON.parse(Http.responseText);
         console.log(obj.IPA);
+        let party=document.getElementById('addhere');
+        party.innerText=obj.IPA;
       }
       else {
           console.log("lol ho gaya!!");
