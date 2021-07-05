@@ -27,9 +27,16 @@ document.addEventListener('DOMContentLoaded', () => {
     //             .then(data => {
     //                 console.log(data); // JSON data parsed by `data.json()` call
     //             });
-const Http = new XMLHttpRequest();
+let Http = new XMLHttpRequest();
 const url='https://nayanapluginserver.pythonanywhere.com/naYana/IPA/getIpaDetect';
 Http.open("POST", url);
+Http.setRequestHeader('Content-Type', 'application/json');
+// Http.setRequestHeader("Access-Control-Allow-Origin","*");
+// Http.setRequestHeader("Access-Control-Allow-Credentials",'true');
+// Http.setRequestHeader('Accept','*/*');
+// Http.setRequestHeader('Connection','keep-alive');
+// Http.setRequestHeader('Accept-Encoding','gzip, deflate, br');
+
 let obj={ str: "hello" };
 obj=JSON.stringify(obj);
 Http.send(obj);
