@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const Http = new XMLHttpRequest();
 const url='https://nayanapluginserver.pythonanywhere.com/naYana/IPA/getIpaDetect';
 Http.open("POST", url);
-let obj={ str: "hello" };
+let obj={ str: "hello there!!" };
 obj=JSON.stringify(obj);
 Http.send(obj);
 
