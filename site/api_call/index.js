@@ -15,7 +15,7 @@
 //         referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
 //         body: JSON.stringify(data) // body data type must match "Content-Type" header
 //     });
-    
+
 //     return response.json(); // parses JSON response into native JavaScript objects
 // }
 
@@ -64,17 +64,17 @@ async function postData(url = '', data = {}) {
         credentials: 'same-origin', // include, *same-origin, omit
         headers: {
             'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin" : "*", 
-            "Access-Control-Allow-Credentials" : true 
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Credentials": true
             // 'Content-Type': 'application/x-www-form-urlencoded',
         },
         redirect: 'follow', // manual, *follow, error
         referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
         body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
-    setTimeout(function(){
+    setTimeout(function () {
         console.log(response);
-    },2000);
+    }, 2000);
     return response.json(); // parses JSON response into native JavaScript objects
 }
 
@@ -84,24 +84,38 @@ document.addEventListener('DOMContentLoaded', () => {
     //             .then(data => {
     //                 console.log(data); // JSON data parsed by `data.json()` call
     //             });
-const Http = new XMLHttpRequest();
-const url='https://nayanapluginserver.pythonanywhere.com/naYana/IPA/getIpaDetect';
-Http.open("POST", url);
-let obj={ str: "hello there!!" };
-obj=JSON.stringify(obj);
-Http.send(obj);
+    // const Http = new XMLHttpRequest();
+    // const url='https://nayanapluginserver.pythonanywhere.com/naYana/IPA/getIpaDetect';
+    // Http.open("POST", url);
+    // let obj={ str: "hello there!!" };
+    // obj=JSON.stringify(obj);
+    // Http.send(obj);
 
-Http.onreadystatechange = (e) => {
-  console.log(Http.responseText);
-  let obj=JSON.parse(Http.responseText);
-  console.log(obj.IPA);
-}
+    // Http.onreadystatechange = (e) => {
+    //   console.log(Http.responseText);
+    //   let obj=JSON.parse(Http.responseText);
+    //   console.log(obj.IPA);
+    // }
     let btn = document.getElementById('btn');
+    let party=document.getElementById('addhere');
     btn.addEventListener('click', () => {
         for (let i = 1; i < 7; i++) {
             let para = document.getElementById("work" + i);
-            let str = para.innerText;
-            console.log(str);
+            let strin = para.innerText;
+            console.log(strin);
+            const Http = new XMLHttpRequest();
+            const url = 'https://nayanapluginserver.pythonanywhere.com/naYana/IPA/getIpaDetect';
+            Http.open("POST", url);
+            let obj = { str: strin };
+            obj = JSON.stringify(obj);
+            Http.send(obj);
+
+            Http.onreadystatechange = (e) => {
+                console.log(Http.responseText);
+                let obj = JSON.parse(Http.responseText);
+                console.log(obj.IPA);
+                party.innerText+=obj.IPA+" ";
+            }
         }
     });
-}); 
+});
