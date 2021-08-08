@@ -1,0 +1,18 @@
+void backtracking(vector<vector<int>> &res,vector<int> a,int l,int r){
+    if(l==r)    
+        res.push_back(a);
+    else{
+        for (int i = l; i <= r; i++)
+        {
+            swap(a[l], a[i]);
+            backtracking(res,a, l+1, r);
+            swap(a[l], a[i]);
+        }
+    }
+}
+vector<vector<int> > Solution::permute(vector<int> &A) {
+    vector<vector<int> > res;
+    sort(A.begin(), A.end()); //special case e.g. A = 3,2,1.
+    backtracking(res,A,0,A.size()-1);
+    return res;
+}

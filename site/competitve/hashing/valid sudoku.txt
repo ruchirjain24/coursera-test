@@ -1,0 +1,85 @@
+bool isValidSudoku(vector<string> &board) {
+        bool r[9][9], c[9][9], s[3][3][9];
+        memset(r, false, sizeof(r));
+        memset(c, false, sizeof(c));
+        memset(s, false, sizeof(s));
+        int number;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] > '0' && board[i][j] <='9') {
+                    number = board[i][j] - '1';
+                    if (r[i][number]) return false;
+                    r[i][number] = true;
+                    if (c[j][number]) return false;
+                    c[j][number] = true;
+                    if (s[i / 3][j / 3][number]) return false;
+                    s[i / 3][j / 3][number] = true;
+                }
+            }
+        }
+        return true;
+    }
+
+OR
+
+bool rowcheck(const vector<string> &A,int i){
+    unordered_map<char,int> mp;
+    for(int j=0;j<A.size();j++){
+        if(A[i][j]=='.')
+            continue;
+        else{
+            if(mp.find(A[i][j])!=mp.end())
+                return false;
+            else
+                mp[A[i][j]]=1;
+        }
+    }
+    return true;
+}
+bool colcheck(const vector<string> &A,int i){
+    unordered_map<char,int> mp;
+    for(int j=0;j<A.size();j++){
+        if(A[j][i]=='.')
+            continue;
+        else{
+            if(mp.find(A[j][i])!=mp.end())
+                return false;
+            else
+                mp[A[j][i]]=1;
+        }
+    }
+    return true;
+}
+bool boxcheck(const vector<string> &A,int a,int b){
+    unordered_map<char,int> mp;
+    for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++){
+            if(A[i+a][j+b]=='.')
+                continue;
+            else{
+                if(mp.find(A[i+a][j+b])!=mp.end())
+                    return false;
+                else
+                    mp[A[i+a][j+b]]=1;
+            }
+        }
+    }
+    return true;
+}
+int Solution::isValidSudoku(const vector<string> &A) {
+    for(int i=0;i<9;i++){
+        if(!rowcheck(A,i))
+            return 0;
+    }
+    for(int i=0;i<9;i++){
+        if(!colcheck(A,i))
+            return 0;
+    }
+    for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++){
+            if(!boxcheck(A,i*3,j*3))
+                return 0;
+        }
+    }
+    return 1;
+}

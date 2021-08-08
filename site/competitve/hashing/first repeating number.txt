@@ -1,0 +1,22 @@
+int Solution::solve(vector<int> &arr) {
+    int min = -1;
+    int n=arr.size();
+ 
+    // Creates an empty hashset
+    set<int> myset;
+ 
+    // Traverse the input array from right to left
+    for (int i = n - 1; i >= 0; i--)
+    {
+        // If element is already in hash set, update min
+        if (myset.find(arr[i]) != myset.end())
+            min = i;
+ 
+        else   // Else add element to hash set
+            myset.insert(arr[i]);
+    }
+    if(min!=-1)
+        return arr[min];
+    else
+        return min;
+}

@@ -1,0 +1,27 @@
+int n=A.size();
+    int j=0;
+    for(int i=0;i<n;i++){
+        if(A[i]<=0){
+            swap(A[i],A[j]);
+            j++;
+        }
+    }
+    for(int i=j;i<n;i++){
+        if(abs(A[i])+j-1>=0&&abs(A[i])+j-1<n){
+         if(A[abs(A[i])+j-1]>0)
+           A[abs(A[i])+j-1]=-A[abs(A[i])+j-1];
+        }
+    }
+    for(int i=j;i<n;i++){
+       // cout<<A[i]<<"\n";
+        if(A[i]>0)
+         return (i-j+1);
+    }
+    return (n-j+1);
+
+//get all -ve numbers on left side
+//traverse the non negative side
+//for each number, go to A[number+j-1] and make that number -ve
+//so now get the first non -ve number by traversing again
+//this is the first missing positive number
+//this Q is so GOOD

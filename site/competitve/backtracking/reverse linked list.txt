@@ -1,0 +1,10 @@
+ListNode* Solution::reverseList(ListNode* A) {
+    if (!A || !A->next)
+        return A;
+    
+    ListNode* head = reverseList(A->next);
+    A->next->next = A;
+    A->next = NULL;
+    
+    return head;
+}

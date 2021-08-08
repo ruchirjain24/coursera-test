@@ -1,0 +1,35 @@
+int Solution::solve(int A, int B) {
+    int count=0;
+    //front up
+    int currx=A+1,curry=B+1;
+    while(currx<9 && curry<9){
+        count++;
+        currx++;
+        curry++;
+    }
+    //down back
+    currx=A-1;
+    curry=B-1;
+    while(currx>0 && curry>0){
+        count++;
+        currx--;
+        curry--;
+    }
+    //front down
+    currx=A+1;
+    curry=B-1;
+    while(currx<9 && curry>0){
+        count++;
+        currx++;
+        curry--;
+    }
+    //back up
+    currx=A-1;
+    curry=B+1;
+    while(currx>0 && curry<9){
+        count++;
+        currx--;
+        curry++;
+    }
+    return count;
+}

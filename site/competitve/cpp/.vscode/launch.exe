@@ -1,0 +1,34 @@
+# 1 "C:\\Users\\Administrator\\Downloads\\bits\\competitve\\cpp\\.vscode\\launch.json"
+# 1 "C:\\Users\\Administrator\\Downloads\\bits\\competitve\\cpp\\.vscode//"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "C:\\Users\\Administrator\\Downloads\\bits\\competitve\\cpp\\.vscode\\launch.json"
+{
+
+
+
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "cpp.exe - Build and debug active file",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\Program Files (x86)\\mingw-w64\\i686-8.1.0-posix-dwarf-rt_v6-rev0\\mingw32\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "C/C++: cpp.exe build active file"
+        }
+    ]
+}

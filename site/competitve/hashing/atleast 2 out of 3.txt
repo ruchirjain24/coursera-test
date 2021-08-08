@@ -1,0 +1,17 @@
+vector<int> Solution::solve(vector<int> &A, vector<int> &B, vector<int> &C) {
+    map<int, int> mp;
+    for(int i=0; i< A.size(); i++){
+        mp[A[i]] |= 1;
+    }
+    for(int i=0; i< B.size(); i++){
+        mp[B[i]] |= 2;
+    }
+    for(int i=0; i< C.size(); i++){
+        mp[C[i]] |= 4;
+    }
+    vector<int> ans;
+    for(auto i = mp.begin(); i!=mp.end(); i++){
+        if(i->second == 3 || i->second == 6 || i->second == 5 || i->second == 7) ans.push_back(i->first);
+    }
+    return ans;
+}

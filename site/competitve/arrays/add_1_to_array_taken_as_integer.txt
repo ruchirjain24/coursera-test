@@ -1,0 +1,28 @@
+vector<int> Solution::plusOne(vector<int> &A) {
+    int i=A.size()-1;
+    while(i>=0){
+        if(A[i]==9){
+            A[i]=0;
+            i--;
+        }
+        else{
+            A[i]=A[i]+1;
+            break;
+        }
+    }
+    if(i<0){
+        A.insert(A.begin(), 1);
+    }
+    vector<int> v;
+    int flag=0;
+    for(int i=0;i<A.size();i++){
+        if(A[i]==0 && flag==0){
+            continue;
+        }
+        else{
+            flag=1;
+            v.push_back(A[i]);
+        }
+    }
+    return v;
+}

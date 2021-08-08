@@ -1,0 +1,32 @@
+int Solution::repeatedNumber(const vector<int> &A) {
+    int sq = sqrt(A.size()-1);
+    int range = ((A.size()-1)/sq) + 1;
+    vector<int> count(range, 0);
+
+    for(int i=0; i<A.size(); i++){
+        count[(A[i]-1)/sq]++;
+    }
+
+    int dRange = range - 1;
+    for(int i=0; i<range; i++){
+        if(count[i] > sq) {
+            dRange = i;
+            break;
+        }
+    }
+
+     unordered_map<int, int> m;
+    for (int i = 0; i < A.size(); i++)
+    {
+        if ( ((dRange * sq) < A[i]) &&
+                (A[i] <= ((dRange + 1) * sq)))
+        {
+            m[A[i]]++;
+ 
+            if (m[A[i]] > 1)
+                return A[i];
+        }
+    }
+
+    return -1;
+}

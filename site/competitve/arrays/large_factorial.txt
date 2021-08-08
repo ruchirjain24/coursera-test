@@ -1,0 +1,15 @@
+string Solution::solve(int A) {
+    string sol = "1";
+    int product;
+    for(int i=2;i<=A;i++) {
+        int carry=0;
+        for(int j=sol.size()-1;j>=0;j--) {
+            product = (i * (sol[j] - '0')) + carry;
+            sol[j] = '0' + (product%10);
+            carry = product/10;
+        }
+        if(carry!=0)
+            sol = to_string(carry) + sol;
+    }
+    return sol;
+}

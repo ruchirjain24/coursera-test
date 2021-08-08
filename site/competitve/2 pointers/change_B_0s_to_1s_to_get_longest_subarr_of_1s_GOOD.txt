@@ -1,0 +1,67 @@
+vector<int> Solution::maxone(vector<int> &a, int B) {
+    int n=a.size();
+    int cnt0 = 0;
+    int l = 0;
+    int max_len = 0;
+    int res_l=0;
+    int res_r=0;
+    // i decides current ending point
+    for (int i = 0; i < n; i++) {
+        if (a[i] == 0)
+            cnt0++;
+ 
+        // If there are more 0's move
+        // left point for current ending
+        // point.
+        while (cnt0 > B) {
+            if (a[l] == 0)
+                cnt0--;
+            l++;
+        }
+        if((i-l+1)>max_len){
+            res_l=l;
+            res_r=i;
+            max_len=i-l+1;
+        }
+    }
+    vector<int> arr;
+    for(int i=res_l;i<=res_r;i++)
+        arr.push_back(i);
+    return arr;
+}
+
+
+OR
+vector<int> Solution::maxone(vector<int> &a, int m) {
+      
+    int n = a.size();
+    int currLeft = 0, currRight = 0; //Indexes for the Current Window
+    int bestLeft = 0, bestRight = 0; // Indexes for the Best Window
+    int count0 = 0;
+    vector<int> result;
+    
+    while(currRight < n){
+        
+        if(count0 <= m){
+            if(a[currRight] == 0) count0++; // Including new zeroes in the window.
+            currRight++;
+        }
+        
+        if(count0 > m){
+            // Travelling till we find the leftmost zero to discard it from the window
+            if(a[currLeft] == 0) count0--;
+            currLeft++; 
+        }
+        
+        if(currRight - currLeft > bestRight - bestLeft){
+            bestLeft = currLeft;
+            bestRight = currRight;
+        }
+    }
+    
+    for(int i = bestLeft; i<bestRight; i++){
+        result.push_back(i);    
+    }
+    return result;
+    
+}

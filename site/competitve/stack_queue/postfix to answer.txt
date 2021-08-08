@@ -1,0 +1,49 @@
+int strToNum(string s){
+    int n=0;
+    int flag=1;
+    for(int i=0;i<s.length();i++){
+        if(s[i]=='-'){
+            flag=-1;
+            continue;
+        }
+        if(s[i]=='+'){
+            flag=1;
+            continue;
+        }
+        int temp=s[i]-'0';
+        n=n*10+temp;
+    }
+    return n*flag;
+}
+int hasNum(string A){
+    for(int i=0;i<A.length();i++){
+        if(A[i]!='+' && A[i]!='/' && A[i]!='*' && A[i]!='-')
+            return true;
+    }
+    return false;
+}
+int Solution::evalRPN(vector<string> &A) {
+    stack<int> s;
+    int n=0;
+    for(int i=0;i<A.size();i++){
+        if(hasNum(A[i])){
+            s.push(strToNum(A[i]));
+        }
+        else{
+            int n1=s.top();
+            s.pop();
+            int n2=s.top();
+            s.pop();
+            if(A[i][0]=='+')
+                n1=n1+n2;
+            else if(A[i][0]=='-')
+                n1=n2-n1;
+            else if(A[i][0]=='*')
+                n1=n1*n2;
+            else
+                n1=n2/n1;
+            s.push(n1);
+        }
+    }
+    return s.top();
+}

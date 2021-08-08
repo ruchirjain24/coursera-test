@@ -1,0 +1,24 @@
+void reverseStr(string& str)
+{
+    int n = str.length();
+    for (int i = 0; i < n / 2; i++)
+        swap(str[i], str[n - i - 1]);
+}
+string Solution::convertToTitle(int A) {
+    string s;
+    while(A>0){
+        int rem=A%26;
+        if(rem==0){
+            s.push_back('Z');
+            A=(A/26)-1;
+        }
+        else{
+            int num=rem-1+65;
+            char c= (char)num;
+            s.push_back(c);
+            A=A/26;
+        }
+    }
+    reverseStr(s);
+    return s;
+}

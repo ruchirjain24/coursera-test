@@ -1,0 +1,11 @@
+int trailingZeroes(int A) {
+    int counting=A/5;
+    int curr5=5;
+    int count=0;
+    while(counting!=0){
+        count+=counting;
+        curr5=curr5*5;
+        counting=A/curr5;
+    }
+    return count;
+}

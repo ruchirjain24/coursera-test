@@ -1,0 +1,25 @@
+ListNode* Solution::removeNthFromEnd(ListNode* A, int B) {
+    int len=0;
+    ListNode* temp=A;
+    if(A==NULL)
+        return A;
+    while(temp!=NULL){
+        len++;
+        temp=temp->next;
+    }
+    if(len<=B){
+        return A->next;
+    }
+    else{
+        ListNode* prev=NULL;
+        temp=A;
+        int i=0;
+        while(i!=(len-B)){
+            i=i+1;
+            prev=temp;
+            temp=temp->next;
+        }
+        prev->next=temp->next;
+        return A;
+    }
+}

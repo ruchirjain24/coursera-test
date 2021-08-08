@@ -1,0 +1,17 @@
+int sumfirst=0;
+    for(int i=0;i<B;i++){
+        sumfirst=sumfirst+A[i];
+    }
+    int sumlast = 0;
+    int maxi=sumfirst+sumlast;
+    int temp=INT_MIN;
+    int lasttaken=0;
+    while(lasttaken<B){
+        sumfirst=sumfirst-A[B-lasttaken-1];
+        sumlast=sumlast+A[A.size()-1-lasttaken];
+        temp=sumlast+sumfirst;
+        if(maxi<temp)
+            maxi=temp;
+        lasttaken++;
+    }
+    return maxi;

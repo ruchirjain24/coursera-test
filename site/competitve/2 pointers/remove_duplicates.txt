@@ -1,0 +1,15 @@
+int Solution::removeDuplicates(vector<int> &A) {
+    int curr=0; // just updating the curr position with unique element
+    for(int i=0;i<A.size();i++)
+    {
+        if(i+1<A.size() && A[i+1]==A[i]) continue;
+        else
+        {
+            A[curr]=A[i];
+            curr++;
+        }
+    }
+    
+    A.erase(A.begin()+curr,A.end());
+    return A.size();
+}

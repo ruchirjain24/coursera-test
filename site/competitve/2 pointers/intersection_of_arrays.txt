@@ -1,0 +1,19 @@
+vector<int> Solution::intersect(const vector<int> &A, const vector<int> &B) {
+    int na=A.size(),nb=B.size();
+    int i=0,j=0;
+    vector<int> interest;
+    while(i<na && j<nb){
+        if(A[i]<B[j]){
+            i++;
+        }
+        else if(B[j]<A[i]){
+            j++;
+        }
+        else{
+            interest.push_back(A[i]);
+            i++;
+            j++;
+        }
+    }
+    return interest;
+}

@@ -1,0 +1,21 @@
+    int n=A.size()+1;
+    int first =1;
+    int last=n;
+    vector <int> arr;
+    for(int i=0;i<A.size();i++){
+        if(A[i]=='I'){
+            arr.push_back(first);
+            first++;
+        }
+        else{
+            arr.push_back(last);
+            last--;
+        }
+    }
+    if(A[A.size()-1]=='I'){
+        arr.push_back(first);
+    }
+    else{
+        arr.push_back(last);
+    }
+    return arr;
