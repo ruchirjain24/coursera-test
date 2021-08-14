@@ -1,0 +1,32 @@
+// Consider this problem a variation of dividing array into two subsets let sum of 
+// first subset be s1 and second subset be s2. Our goal is to minimise |s2-s1|. 
+// Here subset 2 will contain all numbers before which we are adding + symbol and subset 1 
+// will contain all numbers with - symbol.
+// let sum be the total sum of original array.
+// We know at any point s1 + s2 = sum.
+// therefore, s2 = sum - s1.
+// assume s2 > s1
+// therefore we need to minimise s2-s1
+// => sum - 2*s1
+// => sum/2 - s1
+// lets consider this number line
+// 1 … … … sum/2… sum
+// between 1-sum/2 all combinations will not be possible filter out 
+// possible combinations, then calculate minimum number of elements required to build 
+// that number hence the number closest to sum/2 will give result.
+
+int Solution::solve(const vector<int> &A) { 
+    int sum=0;
+for(int i=0;i<A.size();i++) sum+=A[i];
+sum/=2;
+vector<int> dp(sum+1, INT_MAX);
+dp[0]=0;
+for(int i=0;i<A.size();i++){
+    for(int j=sum;j>=A[i];j--){
+        if(dp[j-A[i]]!=INT_MAX) dp[j]=min(dp[j], dp[j-A[i]]+1);
+    }
+}
+for(int i=sum;i>=0 ;i--){
+    if(dp[i]!=INT_MAX) return dp[i];
+}
+}

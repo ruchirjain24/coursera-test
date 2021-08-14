@@ -1,0 +1,23 @@
+int sum(TreeNode* root,int B,int parent){
+    if(root->left==NULL && root->right==NULL){
+        if((parent+root->val)==B)
+            return 1;
+        else
+            return 0;
+    }
+    else{
+        int l=0;
+        int r=0;
+        if(root->left!=NULL){
+            l=sum(root->left,B,parent+root->val);
+        }
+        if(root->right!=NULL){
+            r=sum(root->right,B,parent+root->val);
+        }
+        return l || r;
+    }
+}
+int Solution::hasPathSum(TreeNode* A, int B) {
+    int res=sum(A,B,0);
+    return res;
+}

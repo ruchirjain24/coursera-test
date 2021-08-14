@@ -1,0 +1,40 @@
+vector<int> Solution::solve(TreeNode* A) {
+    if(A==0) return {};
+    vector<int> ans;
+    queue<TreeNode*>q;
+    q.push(A);
+    while(!q.empty())
+    {
+        TreeNode* curr=q.front(); q.pop();
+        ans.push_back(curr->val);
+        if(curr->right) q.push(curr->right);
+        if(curr->left) q.push(curr->left);
+    }
+     reverse(ans.begin(), ans.end());
+     return ans;
+}
+
+
+OR
+
+
+
+
+void traverse(TreeNode* root,map<int,vector<int>> &mp,int height){
+    if(root==NULL)
+        return;
+    traverse(root->left,mp,height+1);
+    mp[height].push_back(root->val);
+    traverse(root->right,mp,height+1);
+    return;
+}
+vector<int> Solution::solve(TreeNode* A) {
+    map<int,vector<int>> mp;
+    traverse(A,mp,0);
+    vector<int> v;
+    for(int i=mp.size()-1;i>=0;i--){
+        for(int j=0;j<mp[i].size();j++)
+            v.push_back(mp[i][j]);
+    }
+    return v;
+}

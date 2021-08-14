@@ -154,7 +154,7 @@ int main()
 			/ \
 			14 15
 			/ \ / \
-		21 22 23 24
+		    21 22 23 24
 
 		Let us create Binary Tree as shown
 		above */

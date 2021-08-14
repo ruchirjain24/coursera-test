@@ -1,0 +1,28 @@
+int Solution::knight(int A, int B, int C, int D, int E, int F) {
+    queue <pair<int,int>> q;
+    vector<vector<bool>> visited (A,vector<bool> (B,false));
+    q.push({C-1,D-1});
+    visited[C-1][D-1]=true;
+    int xMove[8] = { 2, 1, -1, -2, -2, -1, 1, 2 };
+    int yMove[8] = { 1, 2, 2, 1, -1, -2, -2, -1 };
+    int cou=0;
+    while(!q.empty()){
+        int x=q.size();
+        while(x--){
+            pair<int,int> p=q.front();
+            q.pop();
+            if(p==make_pair(E-1,F-1))
+                return cou;
+            for(int i=0;i<8;i++){
+                if( ((p.first+xMove[i])<A) && ((p.second+yMove[i])<B) && ((p.first+xMove[i])>=0) && ((p.second+yMove[i])>=0)){
+                    if(!visited[p.first + xMove[i]][p.second+yMove[i]]){
+                        visited[p.first + xMove[i]][p.second+yMove[i]]=true;
+                        q.push(make_pair(p.first + xMove[i],p.second+yMove[i]));
+                    }
+                }
+            }
+        }
+        cou++;
+    }
+    return -1;
+}

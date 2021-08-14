@@ -1,0 +1,12 @@
+int helper(TreeNode* root, TreeNode* l=NULL,TreeNode* r=NULL){
+    if (root == NULL)
+        return true;
+    if (l != NULL and root->val <= l->val)
+        return false;
+    if (r != NULL and root->val >= r->val)
+        return false;
+    return helper(root->left, l, root) && helper(root->right, root, r);
+}
+int Solution::isValidBST(TreeNode* A) {
+    return helper(A,NULL,NULL);
+}

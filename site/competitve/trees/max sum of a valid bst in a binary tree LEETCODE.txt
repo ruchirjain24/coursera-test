@@ -1,0 +1,45 @@
+class pair1
+    {
+        public:
+        bool second;
+        long first;
+        int minv;
+        int maxv;
+        
+    };
+    pair1 rec(TreeNode* root,long long &ans)
+    {
+        pair1 p;
+        if(root==NULL){
+            p.first = 0;
+            p.second = true;
+            p.minv = INT_MAX;
+            p.maxv = INT_MIN;
+            return p;
+        }
+        
+        pair1 l = rec(root->left,ans);
+        pair1 r = rec(root->right,ans);
+        
+        if(l.second && r.second && root->val < r.minv && root->val> l.maxv)
+        {
+            if(ans < l.first+r.first+root->val)
+                ans = l.first+r.first+root->val;
+            p.first = l.first+r.first+root->val;
+            p.second = true;
+            p.minv = min(root->val,l.minv);
+            p.maxv = max(root->val,r.maxv);
+            return p;
+        }
+        p.first =0 ;
+        p.second = false;
+        p.minv = min(root->val,l.minv);
+        p.maxv = max(root->val,r.maxv);
+        return p;
+        
+    }
+    int maxSumBST(TreeNode* root) {
+        long long ans = LONG_MIN;
+        rec(root,ans);
+        return ans<0?0:ans;
+    }

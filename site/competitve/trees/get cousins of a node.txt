@@ -1,0 +1,38 @@
+int getLevel(TreeNode *root, int &B, int level)
+{
+    if (root == NULL)
+        return 0;
+    if (root->val == B)
+        return level;
+    int downlevel = getLevel(root->left,B, level + 1);
+    if (downlevel != 0)
+        return downlevel;
+    return getLevel(root->right, B, level + 1);
+}
+void printGivenLevel(TreeNode* root, int &B, int level,vector<int> &v)
+{
+    if (root == NULL || level < 2)
+        return;
+    if (level == 2)
+    {
+        if ((root->left && root->left->val == B) || (root->right && root->right->val == B))
+            return;
+        if (root->left)
+            v.push_back(root->left->val);
+        if (root->right)
+            v.push_back(root->right->val);
+    }
+    else if (level > 2)
+    {
+        printGivenLevel(root->left, B, level - 1,v);
+        printGivenLevel(root->right, B, level - 1,v);
+    }
+}
+vector<int> Solution::solve(TreeNode* A, int B) {
+    vector<int> v;
+    if(A==NULL)
+        return v;
+    int level=getLevel(A,B,1);
+    printGivenLevel(A,B,level,v);
+    return v;
+}

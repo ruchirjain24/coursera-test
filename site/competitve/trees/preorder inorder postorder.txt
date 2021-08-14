@@ -1,0 +1,49 @@
+//preorder
+void traverse(TreeNode* root,vector<int> &v){
+    if(root==NULL)
+        return;
+    v.push_back(root->val);
+    traverse(root->left,v);
+    traverse(root->right,v);
+    return;
+}
+vector<int> Solution::preorderTraversal(TreeNode* A) {
+    vector<int> v;
+    traverse(A,v);
+    return v;
+}
+
+//inorder
+void traverse(TreeNode* root,vector<int> &v){
+    if(root==NULL)
+        return;
+    traverse(root->left,v);
+    v.push_back(root->val);
+    traverse(root->right,v);
+    return;
+}
+vector<int> Solution::inorderTraversal(TreeNode* A) {
+    vector<int> v;
+    traverse(A,v);
+    return v;
+}
+
+
+//postorder
+void traverse(TreeNode* root,vector<int> &v){
+    if(root==NULL)
+        return;
+    traverse(root->left,v);
+    traverse(root->right,v);
+    v.push_back(root->val);
+    return;
+}
+vector<int> Solution::postorderTraversal(TreeNode* A) {
+    vector<int> v;
+    traverse(A,v);
+    return v;
+}
+
+
+
+

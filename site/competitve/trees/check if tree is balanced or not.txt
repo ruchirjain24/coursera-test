@@ -1,0 +1,14 @@
+int traverse(TreeNode* root,int &flag){
+    if(root==NULL)
+        return 0;
+    int l=traverse(root->left,flag);
+    int r=traverse(root->right,flag);
+    if(abs(l-r)>=2)
+        flag=0;
+    return max(l,r)+1;
+}
+int Solution::isBalanced(TreeNode* A) {
+    int flag=1;
+    int lol=traverse(A,flag);
+    return flag;
+}

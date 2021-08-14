@@ -1,0 +1,30 @@
+void solve1(vector<int>&ans,TreeNode * root,int B)
+ {
+     if(root==NULL)
+     return;
+     if(root->val==B)
+     {
+         ans.push_back(root->val);
+         return;
+     }
+     if(ans.size()==0)
+     {
+         solve1(ans,root->left,B);
+     }
+     if(ans.size()==0)
+     {
+         solve1(ans,root->right,B);
+     }
+     if(ans.size()>0)
+     {
+         ans.push_back(root->val);
+         return;
+     }
+ }
+vector<int> Solution::solve(TreeNode* A, int B) 
+{
+    vector<int>ans;
+    solve1(ans,A,B);
+    reverse(ans.begin(),ans.end());
+    return ans;
+}

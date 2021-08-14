@@ -1,0 +1,17 @@
+TreeNode* Solution::flatten(TreeNode* root) {
+    if (root == NULL)
+        return root;
+    TreeNode* node=root;
+    while(node){
+        if(node->left!=NULL){
+            TreeNode* rightMost=node->left;
+            while(rightMost->right!=NULL)
+                rightMost=rightMost->right;
+            rightMost->right=node->right;
+            node->right=node->left;
+            node->left=NULL;
+        }
+        node=node->right;
+    } 
+    return root;
+}

@@ -1,0 +1,45 @@
+void matrixRotation(vector<vector<int>> matrix, int r) {
+    int row=matrix.size();
+    int column=matrix[0].size();
+    int numLoop=row<column? row/2:column/2;
+    for(int i=0;i<numLoop;i++){
+        int numRotations = r%(2*(row+column-4*i)-4);
+        for (int rotation = 0; rotation < numRotations; rotation++)
+                {
+                    //clockwise
+                    for (int j = i; j < column - i - 1; j++)
+                    {
+                        int temp = matrix[i][j];
+                        matrix[i][j] = matrix[i][j + 1];
+                        matrix[i][j + 1] = temp;
+                    }
+                    // Rotate right column
+                    for (int j = i; j < row - i - 1; j++)
+                    {
+                        int temp = matrix[j][column - i - 1];
+                        matrix[j][column - i - 1] = matrix[j + 1][column - i - 1];
+                        matrix[j + 1][column - i - 1] = temp;
+                    }
+                    // Rotate bottom row
+                    for (int j = column - i - 1; j > i; j--)
+                    {
+                        int temp = matrix[row - i - 1][j];
+                        matrix[row - i - 1][j] = matrix[row - i - 1][j - 1];
+                        matrix[row - i - 1][j - 1] = temp;
+                    }
+                    // Rotate left column
+                    for (int j = row - i - 1; j > i + 1; j--)
+                    {
+                        int temp = matrix[j][i];
+                        matrix[j][i] = matrix[j - 1][i];
+                        matrix[j - 1][i] = temp;
+                    }
+                }
+    }
+    for(int i=0;i<row;i++){
+        for(int j=0;j<column;j++){
+            cout<<matrix[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}

@@ -1,0 +1,23 @@
+vector<vector<int> > Solution::levelOrder(TreeNode* A) {
+    queue<TreeNode*> q;
+    q.push(A);
+    vector<vector<int>> v;
+    vector<int> temp;
+    TreeNode* t;
+    while(!q.empty()){
+        temp.clear();
+        int s=q.size();
+        while(s){
+            t=q.front();
+            q.pop();
+            temp.push_back(t->val);
+            if(t->left)
+                q.push(t->left);
+            if(t->right)
+                q.push(t->right);
+            s--;
+        }
+        v.push_back(temp);
+    }
+    return v;
+}

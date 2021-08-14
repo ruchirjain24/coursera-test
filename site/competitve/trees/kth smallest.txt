@@ -1,0 +1,16 @@
+TreeNode* kthSmallest(TreeNode* root, int& k)
+{
+    if (root == NULL)
+        return NULL;
+    TreeNode* left = kthSmallest(root->left, k);
+    if (left != NULL)
+        return left;
+    k--;
+    if (k == 0)
+        return root;
+    return kthSmallest(root->right, k);
+}
+int Solution::kthsmallest(TreeNode* A, int B) {
+    TreeNode* res = kthSmallest(A, B);
+    return res->val;
+}
