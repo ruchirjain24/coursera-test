@@ -1,0 +1,24 @@
+int Solution::majorityElement(const vector<int> &A) {
+    int maxCount=1;
+    int maxIdx=0;
+    for(int i=1;i<A.size();i++){
+        if(A[maxIdx]==A[i])
+            maxCount++;
+        else{
+            maxCount--;
+            if(maxCount==0){
+                maxCount=1;
+                maxIdx=i;
+            }
+        }
+    }
+    int freq=0;
+    for(int i:A){
+        if(i==A[maxIdx])
+            freq++;
+    }
+    if(freq>(A.size())/2)
+        return A[maxIdx];
+    else
+        return -1;
+}

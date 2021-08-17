@@ -1,0 +1,37 @@
+int ans=0;
+int dfs(int u,vector<vector<int>> &g,vector<bool> &vis)
+{
+    int mx1=0;
+    int mx2=0;
+    vis[u]=true;
+    for(auto i: g[u])
+    {
+        if(!vis[i])
+        {
+            int k=dfs(i,g,vis);
+            int pre=mx1;
+            mx1=max(mx1,k);
+            if(pre==mx1) 
+              mx2=max({mx2,k});
+            else
+              mx2=max(mx2,pre);
+        }
+    }
+    ans=max(ans,mx1+mx2);
+    return mx1+1;
+}
+int Solution::solve(vector<int> &A) {
+    int n=A.size();
+    vector<vector<int>> g(n);
+    int root;
+    for(int i=0;i<n;i++)
+    {
+        if(A[i]==-1){root=i; continue;}
+        g[i].push_back(A[i]);
+        g[A[i]].push_back(i);
+    }
+    vector<bool> vis(n,false);
+    ans=0;
+    int hight=dfs(root,g,vis);
+    return ans;
+}

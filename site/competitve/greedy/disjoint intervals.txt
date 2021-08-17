@@ -1,0 +1,22 @@
+bool sortbysecasc(const pair<int,int> &a,const pair<int,int> &b)
+{
+       return a.second<b.second;
+}
+int Solution::solve(vector<vector<int> > &A) {
+    vector<pair<int,int>> v;
+    for(int i=0;i<A.size();i++){
+        v.push_back({A[i][0],A[i][1]});
+    }
+    sort(v.begin(), v.end(), sortbysecasc);
+    int count=1;
+    if(v.size()==0 || v.size()==1)
+        return v.size();
+    int last=v[0].second;
+    for(int i=1;i<v.size();i++){
+        if(v[i].first>last){
+            count++;
+            last=v[i].second;
+        }
+    }
+    return count;
+}

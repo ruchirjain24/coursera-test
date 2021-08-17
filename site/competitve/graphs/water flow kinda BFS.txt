@@ -1,0 +1,68 @@
+int Solution::solve(vector<vector<int> > &A) {
+    int dx[4] = {-1,0,1,0};
+    int dy[4] = {0,1,0,-1};
+    
+    int n = A.size();
+    if(n == 0) return 0;
+    int m = A[0].size();
+    
+    vector <vector<bool>> visl(n, vector<bool> (m, 0));
+    auto visr = visl;
+    
+    queue <pair<int, int>> q;
+    
+    for(int i = 0; i < n; i++){
+        visl[i][0] = 1;
+        q.push({i, 0});
+    }
+    
+    for(int j = 0; j < m; j++){
+        visl[0][j] = 1;
+        q.push({0, j});
+    }
+    
+    while(!q.empty()){
+        int x = q.front().first, y = q.front().second;
+        q.pop();
+        for(int i = 0; i < 4; i++){
+            int nx = x + dx[i], ny = y + dy[i];
+            if(nx < 0 or nx >= n or ny < 0 or ny >= m or visl[nx][ny])continue;
+            if(A[nx][ny] >= A[x][y]){
+                visl[nx][ny] = 1;
+                q.push({nx, ny});
+            }
+        }
+    }
+    
+    for(int i = 0; i < n; i++){
+        visr[i][m - 1] = 1;
+        q.push({i, m - 1});
+    }
+    
+    for(int j = 0; j < m; j++){
+        visr[n - 1][j] = 1;
+        q.push({n - 1, j});
+    }
+    
+    while(!q.empty()){
+        int x = q.front().first, y = q.front().second;
+        q.pop();
+        for(int i = 0; i < 4; i++){
+            int nx = x + dx[i], ny = y + dy[i];
+            if(nx < 0 or nx >= n or ny < 0 or ny >= m or visr[nx][ny])continue;
+            if(A[nx][ny] >= A[x][y]){
+                visr[nx][ny] = 1;
+                q.push({nx, ny});
+            }
+        }
+    }
+    
+    int ans = 0;
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++) {
+            ans += visl[i][j] and visr[i][j];
+        }
+    }
+    
+    return ans;
+}
