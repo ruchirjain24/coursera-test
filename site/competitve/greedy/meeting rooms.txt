@@ -1,0 +1,18 @@
+int Solution::solve(vector<vector<int> > &A) {
+    vector<pair<int,int>> answer;
+    for(int i=0;i<A.size();i++){
+        answer.push_back(make_pair(A[i][0],1));
+        answer.push_back(make_pair(A[i][1],0));
+    }
+    sort(answer.begin(),answer.end());
+    int curr_rooms=0, max_rooms=0;
+    for(pair<int,int> x:answer){
+        if(x.second==1) 
+            curr_rooms++;
+        if(x.second==0) 
+            curr_rooms--;
+        if(max_rooms<curr_rooms) 
+            max_rooms=curr_rooms;
+    }
+    return max_rooms; 
+}

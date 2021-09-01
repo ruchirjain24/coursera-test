@@ -1,0 +1,16 @@
+int Solution::strStr(const string A, const string B) {
+    int start=0,temp_start=start,j=0;
+    while(temp_start<A.size() && j<B.size())
+    {
+        if(A[temp_start]==B[j])
+        {
+            temp_start++,j++;
+        }
+        else
+        {
+            j=0,temp_start=++start;
+        }
+        if(j==B.size()) return start;
+    }
+    return -1;
+}

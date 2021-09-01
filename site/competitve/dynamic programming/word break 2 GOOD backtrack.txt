@@ -1,0 +1,39 @@
+void construct(vector<string> &res, vector<string> &temp,string A, unordered_set<string> &dict,int i)
+{
+    if(i>=A.size())
+    {
+        string s = "";    
+        for(int k = 0;k<temp.size()-1; k++)
+        {
+            s+= temp[k];
+            s+= ' ';
+        }    
+        s+= temp[temp.size()-1];
+        res.push_back(s);   
+        return ;
+    }
+    
+    for(int k = i; k<A.size(); k++)
+    {
+        string s = A.substr(i,k-i+1);
+        if(dict.find(s)!=dict.end())
+        {
+            temp.push_back(s);
+            construct(res,temp,A,dict,k+1);
+            temp.pop_back();
+        }    
+    }
+}
+vector<string> Solution::wordBreak(string A, vector<string> &B) {
+    
+    unordered_set<string> dict;
+    for(int i = 0;i<B.size(); i++)
+        dict.insert(B[i]);
+        
+    vector<string> res;
+    vector<string> temp;
+    
+    construct(res,temp,A,dict,0);
+    return res;
+    
+}

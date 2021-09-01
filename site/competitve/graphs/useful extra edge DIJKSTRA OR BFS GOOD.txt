@@ -1,0 +1,86 @@
+#define pii pair<int, int>
+vector< vector< pii > > graph;
+vector< bool > visited;
+long long bfs(int root, int D){
+    if(root==D) return -1;
+    priority_queue< pii, vector<pii>, greater<> > pq;
+    for(auto i:graph[root]) pq.push({i.second, i.first});
+    visited[root]=true;
+    while(!pq.empty()){
+        long long a=pq.top().second, w=pq.top().first; pq.pop();
+        if(a==D) return w;
+        if(visited[a]) continue;
+        visited[a]=true;
+        for(auto i:graph[a]) pq.push({i.second+w, i.first});
+    }
+    return INT_MAX;
+}
+int Solution::solve(int A, vector<vector<int> > &B, int C, int D, vector<vector<int> > &E) {
+    graph = vector< vector< pii > >(A+1);
+    for(auto i:B){ graph[i[0]].push_back({i[1], i[2]}); }
+    long long ans=INT_MAX;
+    for(auto i:E){
+        visited = vector< bool >(A+1, false);
+        if(i[0]>A || i[1]>A) continue; 
+        graph[i[0]].push_back({i[1], i[2]});
+        graph[i[1]].push_back({i[0], i[2]});
+        ans = min(bfs(C, D), ans);
+        graph[i[0]].pop_back();
+        graph[i[1]].pop_back();
+    }
+    return ans==INT_MAX?-1:ans;
+}
+
+
+OR
+
+
+#define pii pair<int,int>
+
+int dijkstras(int src, int dest, int n, vector<vector<pii>> &adj){
+    vector<int> dist(n+1, INT_MAX);
+    vector<bool> vis(n+1, false);
+    dist[src]=0;
+    priority_queue<pii, vector<pii>, greater<pii>> minHp;
+    minHp.push({0,src});
+    
+    while(!minHp.empty()){
+        pii p=minHp.top();
+        int u=p.second;
+        minHp.pop();
+        if(vis[u]) continue;
+        vis[u]=true;
+        
+        for(auto child:adj[u]){
+            int v=child.first;
+            int w=child.second;
+            if(dist[v]>dist[u]+w){
+                dist[v]=dist[u]+w;
+                minHp.push({dist[v], v});
+            }
+        }
+    }
+    return dist[dest];
+}
+
+int Solution::solve(int A, vector<vector<int> > &B, int C, int D, vector<vector<int> > &E) {
+    vector<vector<pii>> adj(A+1);
+    for(auto v:B){
+        adj[v[0]].push_back({v[1], v[2]});
+    }
+    
+    int ans=INT_MAX;
+    // take one edge at a time from E
+    for(auto v:E){
+        if(v[0]>A || v[1]>A) continue;
+        
+        adj[v[0]].push_back({v[1], v[2]});
+        adj[v[1]].push_back({v[0], v[2]});
+        int temp=dijkstras(C,D,A,adj);
+        ans=min(ans, temp);
+        adj[v[0]].pop_back();
+        adj[v[1]].pop_back();
+        
+    }
+    return (ans==INT_MAX) ? -1 : ans;
+}

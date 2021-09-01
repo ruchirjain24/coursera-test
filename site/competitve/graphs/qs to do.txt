@@ -4,13 +4,83 @@ https://leetcode.com/problems/open-the-lock/
 https://leetcode.com/problems/sliding-puzzle/
 https://leetcode.com/problems/bus-routes/
 https://leetcode.com/problems/find-eventual-safe-states/
-https://leetcode.com/problems/redundant-connection/
+
+----- To Be Done Today -------
+
 https://leetcode.com/problems/making-a-large-island/
-Minimum height tree
+https://leetcode.com/problems/minimum-height-trees/
 https://leetcode.com/problems/shortest-path-visiting-all-nodes/
 https://leetcode.com/problems/critical-connections-in-a-network/
+https://leetcode.com/problems/redundant-connection/
 
 -> DSU == Union Find
 -> Kosaraju Algorithm => SCC (strongly connected component)
+Making Large Island
 
+vector<vector<int>> g;
+int n;
+vector<vector<bool>> vis,v;
+vector<vector<int>> d = {{1,0},{-1,0},{0,1},{0,-1}};
+vector<vector<int>> id;
+int p;
+class Solution {
+public:
+    int doit(int i,int j){
+        vis[i][j] = true;
+        int ans = 1;
+        id[i][j] = p;
+        for(auto k:d){
+            int x = i +k[0];
+            int y = j + k[1];
+            if(x<0 || y<0 || x>=n || y>=n) continue;
+            if(vis[x][y]) continue;
+            if(!g[x][y])  continue;
+            ans += doit(x,y);
+        }
+        return ans;
+    }
+    int largestIsland(vector<vector<int>>& grid) {
+        g = grid;
+        n = g.size();
+        int ans = 0;
+        p = 0;
+        vis.assign(n,vector<bool>(n,false));
+        v.assign(n,vector<bool>(n,false));
+        id.assign(n,vector<int>(n,0));
+    
+        unordered_map<int, int> score;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){    
+                if(g[i][j] && !vis[i][j]){
+                    p++;
+                    int size = doit(i,j);
+                    // fill(i,j,size);
+                    score[p] = size;
+                    ans= max(ans,size);
+                }
+            }
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(!g[i][j]){
+                    unordered_set<int> uniqueIds;
+                    for(auto k:d){
+                        int x = i +k[0];
+                        int y = j + k[1];
+                        if(x<0 || y<0 || x>=n || y>=n) continue;
+                        if(id[x][y]){
+                            uniqueIds.insert(id[x][y]);
+                        }
+                    }
+                    int currSize = 1;
+                    for(auto abc : uniqueIds){
+                        currSize += score[abc];
+                    }
+                    ans = max(ans,currSize);
+                }
+            }
+        }
+        return max(1,ans);
+    }
+};
 

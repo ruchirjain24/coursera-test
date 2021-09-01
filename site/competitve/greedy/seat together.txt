@@ -1,0 +1,19 @@
+int Solution::seats(string A) {
+    vector<int> seat;
+    for(int i=0;i<A.size();i++)
+    {
+        if(A[i]=='x')
+        {
+            seat.push_back(i);
+        }
+    }
+    int ans=0,mod=10000003;
+    int sz=seat.size(),md=sz/2;
+    for(int i=0;i<sz;i++)
+    {
+        // cout<<seat[i]<<"\n";
+        ans=ans+(abs(seat[md]-seat[i])-abs(md-i))%mod;
+        ans=ans%mod;
+    }
+    return ans;
+}
