@@ -1,0 +1,44 @@
+int findSubarraySum(vector<int> &arr, int n, int sum)
+{
+    unordered_map<int, int> prevSum;
+    int res = 0;
+    int currsum = 0;
+    for (int i = 0; i < n; i++) {
+        currsum += arr[i];
+        if (currsum == sum)
+            res++;
+        if (prevSum.find(currsum - sum) != prevSum.end())
+            res += (prevSum[currsum - sum]);
+        prevSum[currsum]++;
+    }
+    return res;
+}
+int Solution::solve(vector<vector<int> > &A) {
+    int m=A.size();
+    int n=A[0].size();
+    if(m==0)
+        return 0;
+    if(m==1)
+        return findSubarraySum(A[0],n,0);
+    for(int i=0;i<m;i++){
+        for(int j=0;j<n;j++){
+            if(i==0)
+                continue;
+            A[i][j]=A[i-1][j] + A[i][j];
+        }
+    }
+    int res=0;
+    for(int i=0;i<m;i++){
+        for(int j=i;j<m;j++){
+            if(i==0){
+                res+=findSubarraySum(A[j],n,0);
+                continue;
+            }   
+            vector<int> temp(n);
+            for(int k=0;k<n;k++)
+                temp[k]=A[j][k]-A[i-1][k];
+            res+=findSubarraySum(temp,n,0);
+        }
+    }
+    return res;
+}
