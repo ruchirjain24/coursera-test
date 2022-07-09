@@ -1,0 +1,14 @@
+vector<int> Solution::findPerm(const string A, int B) {
+    vector<int> v;
+    int n=A.size();
+    int low=1;
+    int high=n+1;
+    for(int i=0;i<n;i++){
+        if(A[i]=='D')
+            v.push_back(high--);
+        else
+            v.push_back(low++);
+    }
+    v.push_back(low);
+    return v;
+}

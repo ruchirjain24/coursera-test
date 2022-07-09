@@ -1,30 +1,18 @@
-int myCompare(string X, string Y)
-{
-    // first append Y at the end of X
-    string XY = X.append(Y);
- 
-    // then append X at the end of Y
-    string YX = Y.append(X);
- 
-    // Now see which of the two
-    // formed numbers is greater
-    return XY.compare(YX) > 0 ? 1 : 0;
+bool compareNum(string a, string b) {
+    return a + b > b + a;
 }
-string Solution::largestNumber(const vector<int> &A) {
-    vector<string> b;
-    for(int i=0;i<A.size();i++){
-        b.push_back(to_string(A[i]));
+string Solution::largestNumber(const vector < int > & A) {
+    string result;
+    vector < string > str;
+    for (int i = 0; i < A.size(); i++) {
+        str.push_back(to_string(A[i]));
     }
-    sort(b.begin(),b.end(),myCompare);
-    string ans="";
-    for(int i=0;i<b.size();i++){
-     ans+=b[i];
+    sort(str.begin(), str.end(), compareNum);
+    for (int i = 0; i < str.size(); i++) {
+        result += str[i];
     }
-    int i=0;
-    while(ans[i]=='0'){
-        i++;
-    }
-    if(i==ans.length())
-     ans="0";
-    return ans;
+
+    int pos = 0;
+    while (result[pos] == '0' && pos + 1 < result.size()) pos++;
+    return result.substr(pos);
 }

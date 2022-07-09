@@ -1,0 +1,6 @@
+int Solution::addNumbers(int x, int y) {
+    if (y == 0)
+        return x;
+    else
+        return addNumbers( x ^ y,(unsigned) (x & y) << 1);
+}
