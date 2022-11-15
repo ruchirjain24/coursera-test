@@ -1,119 +1,26 @@
 #include <iostream>
-#include <vector>
-#include <unordered_map>
-#include <set>
+#include <bits/stdc++.h>
 using namespace std;
 
-// Data structure to store a graph edge
-struct Edge {
-	int src, dest;
+template <class T> struct str{
+    ostream &ob;
+    str(ostream & o):ob(o){}    
+    void operator()(const T&v){
+        ob<<v<<" ";
+    }
 };
-
-class Graph
-{
-public:
-	// a vector of vectors to represent an adjacency list
-	vector<vector<int>> adjList;
-
-	// Constructor
-	Graph(vector<Edge> const &edges, int N)
-	{
-		// resize the vector to hold `N` elements of type `vector<int>`
-		adjList.resize(N);
-
-		// add edges to the undirected graph
-		for (Edge edge: edges)
-		{
-			int src = edge.src;
-			int dest = edge.dest;
-
-			adjList[src].push_back(dest);
-			adjList[dest].push_back(src);
-		}
-	}
+struct argq{
+    int start;
+    argq(int start):start(start){}
+    int operator()(){
+        return ++start +5;
+    }
 };
-
-// Add more colors for graphs with many more vertices
-string color[] =
-{
-	"", "BLUE", "GREEN", "RED", "YELLOW", "ORANGE", "PINK",
-	"BLACK", "BROWN", "WHITE", "PURPLE", "VOILET"
-};
-
-// Function to assign colors to vertices of a graph
-void colorGraph(Graph const &graph, int N)
-{
-	// keep track of the color assigned to each vertex
-	unordered_map<int, int> result;
-
-	// assign a color to vertex one by one
-	for (int u = 0; u < N; u++)
-	{
-		// set to store the color of adjacent vertices of `u`
-		set<int> assigned;
-
-		// check colors of adjacent vertices of `u` and store them in a set
-		for (int i: graph.adjList[u])
-		{
-			if (result[i]) {
-				assigned.insert(result[i]);
-			}
-		}
-
-		// check for the first free color
-		int color = 1;
-		for (auto &c: assigned )
-		{
-			if (color != c) {
-				break;
-			}
-			color++;
-		}
-
-		// assign vertex `u` the first available color
-		result[u] = color;
-	}
-
-	for (int v = 0; v < N; v++)
-	{
-		cout << "The color assigned to vertex " << v << " is "
-			 << color[result[v]] << endl;
-	}
-}
-
-// Greedy coloring of a graph
-int main()
-{
-	// vector of graph edges as per the above diagram
-	vector<Edge> edges = {
-		{8, 7},
-	  {8, 6},
-	  {8, 2},
-	  {4, 9},
-	  {11, 10},
-	  {5, 10},
-	  {1, 10},
-	  {3, 7},
-	  {3, 6},
-	  {11, 7},
-	  {5, 7},
-	  {1, 6},
-	  {3, 2},
-	  {8, 9},
-	  {4, 10},
-	  {5, 6},
-	  {4, 7},
-	  {4, 6}
-	};
-
-	// total number of nodes in the graph
-	int N = 18;
-
-	// build a graph from the given edges
-	Graph graph(edges, N);
-
-	// color graph using the greedy algorithm
-	colorGraph(graph, N);
-
-	return 0;
+int main(){
+    vector<int> v1(10);
+    generate(v1.rbegin(),v1.rend(),argq(10));
+    rotate(v1.begin(),v1.begin()+2,v1.end());
+    for_each(v1.begin(),v1.end(),str<int>(cout));
+    cout<<endl;
+    return 0;  
 }
